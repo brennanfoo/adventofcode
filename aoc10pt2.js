@@ -92,6 +92,7 @@ var input = `95
 input.sort(function(a, b){ return a - b })
 input.unshift(0); // add outlet
 input.push(input[input.length-1]+3); // add built-in
+console.log(input.length);
 
 var oneDiff = 0
 var threeDiff = 0
@@ -103,26 +104,16 @@ for (var i=0; i<input.length-1; i++){
     diffArr.push(input[i+1]-input[i])
 }
 
-var oneDiffThreeTimesCounter = 0;
-
-for (var i=0; i<diffArr.length; i++){
-    if (diffArr[i] ===1 ) {
-        if (diffArr[i + 1] === 1) {
-            if (diffArr[i + 2] === 1) {
-                oneDiffThreeTimesCounter++;
-            }
-        }
-    }
-}
 console.log(input);
 console.log(diffArr);
-console.log(oneDiffThreeTimesCounter)
+
 let diffStr = "";
 
-for (var i=0; i<diffArr.length; i++){
-    diffStr+=String(diffArr[i]);
+for (var j=0; j<diffArr.length; j++){
+    diffStr+=String(diffArr[j]);
 }
 
+console.log(diffStr);
 oneDiffStrArr = diffStr.split("3");
 console.log(oneDiffStrArr);
 
@@ -130,12 +121,12 @@ console.log(oneDiffStrArr);
 // 111 can be 3 diff: 111, 12, 21
 // 11 can be 2 diff: 11, 2
 
-var possibilities = 1;
+let res = 1;
 
 oneDiffStrArr.forEach(function (i){
-  if (i==="1111"){ possibilities *=4; }
-  else if (i==="111"){ possibilities *=3; }
-  else if (i==="11"){ possibilities *=2; }
+  if (i==="1111"){ res *=4; }
+  else if (i==="111"){ res *=3; }
+  else if (i==="11"){ res *=2; }
 })
 
-console.log(possibilities);
+console.log(res);
