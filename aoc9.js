@@ -999,7 +999,7 @@ var input = `10
 57593677669241
 67897679576611`.split("\n")
 
-var valid = []
+var valid = [];
 var result = 0;
 var index = 0;
 var size = input.length;
