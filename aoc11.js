@@ -28,10 +28,17 @@ function processSeats(array){
         row.forEach(function (seat){
             let adjacentPeople = checkAdjacentOccupied (arrArr, row, seat);
             if (seat===".") { nextRow.push('.');}
-            else if (seat==='#' && adjacentPeople >= 4){
-                nextRow.push('L'); // L = empty
-            } else if (seat==='L' && adjacentPeople <= 0){
-                nextRow.push('#');
+            else if (seat==='#'){
+                if (adjacentPeople >= 4){
+                    nextRow.push('L');
+                } else {
+                    nextRow.push('#');
+                }
+            } else if (seat==='L'){
+                if (adjacentPeople <= 0){
+                    nextRow.push('#');
+                } else
+                    nextRow.push('L');
             }
         })
         nextSeatMap.push(nextRow);
