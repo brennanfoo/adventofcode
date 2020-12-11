@@ -3,9 +3,10 @@ var input = requireText('./inputs/aoc11.txt',require).split("\n");
 
 var arrArr = [];
 var tempArr = [];
+var equilibrium = false;
 
-console.log(input);
 
+// Populate arrArr
 input.forEach(function (r){
     for (var c = 0; c<input[0].length; c++){
         tempArr.push(r.charAt(c));
@@ -14,16 +15,29 @@ input.forEach(function (r){
     tempArr = [];
 })
 
+do {
+    arrArr = processSeats(arrArr);
+} while(!equilibrium)
+
+console.log(countOccupied(arrArr));
+
 function processSeats(array){
-let nextSeat = [];
-    arrArr.forEach(function (row){
+    let nextSeatMap = [];
+    array.forEach(function (row){
         let nextRow = [];
         row.forEach(function (seat){
             let adjacentPeople = checkAdjacentOccupied (arrArr, row, seat);
-
+            if (seat===".") { nextRow.push('.');}
+            else if (seat==='#' && adjacentPeople >= 4){
+                nextRow.push('L'); // L = empty
+            } else if (seat==='L' && adjacentPeople <= 0){
+                nextRow.push('#');
+            }
         })
+        nextSeatMap.push(nextRow);
     })
-
+    equilibrium = arraysEqual(array,nextSeatMap);
+    return(nextSeatMap);
 }
 
 function checkAdjacentOccupied(array, row, seat){
@@ -39,6 +53,16 @@ function checkAdjacentOccupied(array, row, seat){
     return adjacentOccupied;
 }
 
+function countOccupied(array){
+    let occCount = 0;
+    for (let foo = 0; foo<array.length; foo++){
+        for (let bar = 0; bar<array[foo].length; bar++ ){
+            if (array[foo][bar]==='#'){occCount++;}
+        }
+    }
+    return occCount;
+}
+
 function arraysEqual(a, b) { // source https://stackoverflow.com/a/16436975
     if (a === b) return true;
     if (a == null || b == null) return false;
@@ -48,22 +72,4 @@ function arraysEqual(a, b) { // source https://stackoverflow.com/a/16436975
         if (a[i] !== b[i]) return false;
     }
     return true;
-}
-
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
-    }
-    rawFile.send(null);
 }
