@@ -46,7 +46,7 @@ function rotate(direction, degrees){
     let relYPos = wayYPos - yPos;
     console.log ("Relative diff before rotating: "+relXPos+", "+relYPos);
 
-    if ((direction === 'L' && degrees === 90) || (direction === 'R' && degrees == 270)){
+    if ((direction === 'L' && degrees === 90) || (direction === 'R' && degrees === 270)){
         let newRelXPos = -relYPos;
         let newRelYPos = relXPos;
         wayXPos = xPos+newRelXPos;
@@ -58,7 +58,7 @@ function rotate(direction, degrees){
         wayXPos = xPos + relXPos;
         wayYPos = yPos + relYPos;
     }
-    else if ((direction === 'R' && degrees === 90) || (direction === 'L' && degrees == 270)){
+    else if ((direction === 'R' && degrees === 90) || (direction === 'L' && degrees === 270)){
         let newRelXPos = relYPos;
         let newRelYPos = -relXPos;
         wayXPos = xPos + newRelXPos;
