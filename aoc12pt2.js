@@ -44,7 +44,7 @@ function forward(magnitude){
 function rotate(direction, degrees){
     let relXPos = wayXPos - xPos;
     let relYPos = wayYPos - yPos;
-    console.log ("Relative diff before rotating: "+relXPos+", "+relYPos);
+    // console.log ("Relative diff before rotating: "+relXPos+", "+relYPos);
 
     if ((direction === 'L' && degrees === 90) || (direction === 'R' && degrees === 270)){
         let newRelXPos = -relYPos;
