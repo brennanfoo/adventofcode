@@ -1,20 +1,7 @@
 let requireText = require('require-text');
-let input = requireText('./inputs/aoc12.txt',require).split("\n");
-// let input = `F10
-// N3
-// F7
-// R90
-// F11`.split("\n");
-let arr = [];
-input.forEach(function (i){
-    arr.push(i.trim());
-})
-
-//Ship Position
+let arr = requireText('./inputs/aoc12.txt',require).split("\r\n");
 let xPos = 0;
 let yPos = 0;
-
-// Waypoint position
 let wayXPos = 10;
 let wayYPos = 1;
 
@@ -24,7 +11,6 @@ arr.forEach(function (j){
     processAction(action,magnitude);
 })
 
-console.log("Final xPos + yPos = "+Math.abs(xPos)+" "+Math.abs(yPos));
 console.log(Math.abs(xPos)+Math.abs(yPos));
 
 function processAction(action, magnitude){
@@ -82,5 +68,5 @@ function rotate(direction, degrees){
 }
 
 function report(action, magnitude){
-    console.log(action+""+magnitude+" - new xPos yPos of "+xPos+", "+yPos+", waypoint is at "+wayXPos+", "+wayYPos+" (relative diff of "+(wayXPos-xPos)+", "+(wayYPos-yPos)+")");
+    // console.log(action+""+magnitude+" - new xPos yPos of "+xPos+", "+yPos+", waypoint is at "+wayXPos+", "+wayYPos+" (relative diff of "+(wayXPos-xPos)+", "+(wayYPos-yPos)+")");
 }
