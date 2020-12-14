@@ -8,12 +8,11 @@ let map1 = new Map();
 input.forEach(function (i){
     let left = i.split(" = ")[0]
     let right = i.split(" = ")[1]
-    let address = 0;
     if ('mask' === left) {
         mask = right;
     }
     else {
-        address = left.substring(4,left.length-1)
+        let address = left.substring(4,left.length-1)
         maskAndSet(map1, address, right);
     }
 })
